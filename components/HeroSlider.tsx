@@ -20,18 +20,18 @@ export default function HeroSlider() {
     <section
       className="
         relative w-full overflow-hidden
-        h-[82vh] sm:h-[86vh] lg:h-[90vh]
+        h-[72vh] sm:h-[78vh] lg:h-[86vh]
       "
     >
       {/* BACKGROUND IMAGE */}
       <Image
         key={HERO.images[index]}
         src={HERO.images[index]}
-        alt="Resultados Anderson Castelão"
+        alt="Resultados de alunos Anderson Castelão"
         fill
         priority
         quality={100}
-        sizes="(max-width: 768px) 100vw, 1200px"
+        sizes="100vw"
         className="
           object-cover
           object-center
@@ -39,114 +39,73 @@ export default function HeroSlider() {
         "
       />
 
-      {/* OVERLAY */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/60 to-black/85" />
+      {/* OVERLAY (mais leve no mobile) */}
+      <div className="
+        absolute inset-0
+        bg-gradient-to-b
+        from-black/55 via-black/45 to-black/75
+        sm:from-black/65 sm:via-black/55 sm:to-black/80
+      " />
 
       {/* CONTENT */}
       <div className="relative z-10 h-full flex items-center">
-        <div
-          className="
-            max-w-7xl mx-auto px-5 sm:px-8
-            grid grid-cols-1 lg:grid-cols-2
-            gap-10 lg:gap-16
-            items-center
-          "
-        >
-          {/* TEXT + MOBILE IMAGE */}
-          <div>
-            {/* LOGO */}
-            <div className="mb-5">
-              <Image
-                src={HERO.logo}
-                alt={`${SITE.name} Logo`}
-                width={88}
-                height={88}
-                priority
-                quality={100}
-                className="opacity-90"
-              />
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight">
-              {SITE.name}
-            </h1>
-
-            <p className="text-gold text-lg sm:text-xl mt-2 mb-4 tracking-wide">
-              {SITE.slogan}
-            </p>
-
-            <p className="text-zinc-300 max-w-xl mb-6 leading-relaxed text-sm sm:text-base">
-              {SITE.description}
-            </p>
-
-            {/* ANDERSON – MOBILE */}
-            <div className="lg:hidden mb-8 flex justify-center">
-              <Image
-                src={HERO.profileImage}
-                alt={SITE.name}
-                width={260}
-                height={340}
-                quality={100}
-                priority
-                className="
-                  rounded-3xl
-                  object-cover
-                  opacity-95
-                  mix-blend-lighten
-                  shadow-xl
-                "
-              />
-            </div>
-
-            <a
-              href={CONTACT.whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                inline-flex items-center gap-3
-                bg-gold text-black
-                px-8 py-4
-                rounded-full font-semibold
-                hover:scale-105
-                hover:shadow-[0_0_22px_rgba(230,199,90,0.3)]
-                transition-all
-              "
-            >
-              Falar no WhatsApp <ArrowRight size={18} />
-            </a>
-          </div>
-
-          {/* ANDERSON – DESKTOP */}
-          <div className="hidden lg:flex justify-center relative">
-            <div className="absolute inset-0 bg-gold/10 blur-3xl scale-75 rounded-full" />
-
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 w-full">
+          
+          {/* LOGO */}
+          <div className="mb-4 sm:mb-6">
             <Image
-              src={HERO.profileImage}
-              alt={SITE.name}
-              width={420}
-              height={540}
-              quality={100}
+              src={HERO.logo}
+              alt={`${SITE.name} Logo`}
+              width={80}
+              height={80}
               priority
-              className="
-                relative
-                rounded-[32px]
-                object-cover
-                opacity-95
-                mix-blend-lighten
-                shadow-2xl
-              "
+              quality={100}
+              className="opacity-95"
             />
           </div>
+
+          {/* TEXT */}
+          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight max-w-3xl">
+            {SITE.name}
+          </h1>
+
+          <p className="text-gold text-lg sm:text-xl mt-2 mb-4 tracking-wide">
+            {SITE.slogan}
+          </p>
+
+          <p className="text-zinc-200 max-w-xl mb-6 leading-relaxed text-sm sm:text-base">
+            {SITE.description}
+          </p>
+
+          {/* CTA */}
+          <a
+            href={CONTACT.whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+              inline-flex items-center gap-3
+              bg-gold text-black
+              px-7 py-4
+              rounded-full font-semibold
+              hover:scale-105
+              hover:shadow-[0_0_22px_rgba(230,199,90,0.3)]
+              transition-all
+            "
+          >
+            Falar no WhatsApp <ArrowRight size={18} />
+          </a>
         </div>
       </div>
 
       {/* INDICATORS */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2 z-10">
         {HERO.images.map((_, i) => (
           <span
             key={i}
             className={`h-2 w-2 rounded-full transition-all ${
-              i === index ? "bg-gold scale-125" : "bg-white/40"
+              i === index
+                ? "bg-gold scale-125"
+                : "bg-white/40"
             }`}
           />
         ))}
